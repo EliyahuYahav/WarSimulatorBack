@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import userRouter from './router/userRouter'
+import organizationRoute from './router/organizationRoute'
 import connectDb from "./config/db";
 import dotenv from "dotenv";
 import cp from "cookie-parser";
@@ -20,6 +21,6 @@ app.use(cors())
 
 
 app.use('/api', userRouter)
-app.use('/api', )
+app.use('/api', organizationRoute)
 
 httpServer.listen(PORT, ()=>{console.log(`server listen on port ${PORT}.`)})

@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 
 
 const OrganizationsSchema:Schema = new mongoose.Schema({
-  organizationName: { type: String, required: [true, "please add the organizationName"]} as object,
+  name: { type: String, required: [true, "please add the organizationName"]} as object,
   resources: { type: Types.ObjectId, ref: 'Resources'} as object,
 });
 
 export interface IOrganizations{
-  organizationName: string;
+  name: string;
   resources: Types.ObjectId;
   _id?: Types.ObjectId;
 }

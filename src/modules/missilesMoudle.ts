@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 
 
 const ResourcesSchema:Schema = new mongoose.Schema({
-  missileName: { type: String, required: [true, "please add the missileName"]} as object,
+  name: { type: String, required: [true, "please add the missileName"]} as object,
   amount: { type: Number } as object,
 });
 
 export interface IResources{
-    missileName: string;
+  name: string;
     amount: Types.ObjectId;
     _id?: Types.ObjectId;
 }

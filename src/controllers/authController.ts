@@ -11,7 +11,7 @@ const JWT_SECRET: string = process.env.JWT_SECRET || "default_secret";
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const user: IUser = req.body;
-    if (!user.username || !user.password) {
+    if (!user.name || !user.password) {
       res.status(400).json({ error: "Username and password are required." });
       return;
     }
@@ -31,7 +31,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
     const user: IUser | null = await authenticateUser(username, password);
     if (user) {
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+      const token = jwt.sign({ id: user._id, organization:user.organization }, JWT_SECRET, {
         expiresIn: "1h",
       });
       res.cookie("token", token, {
