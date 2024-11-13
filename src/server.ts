@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import cp from "cookie-parser";
 import cors from "cors"
 import { createServer } from 'http';
+import { initializeSocketServer } from "./socket";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const PORT : string|number = process.env.PORT || 3000;
 const app: Application = express();
 
 const httpServer = createServer(app);
+const io = initializeSocketServer(httpServer);
 connectDb();
 
 app.use(express.json());

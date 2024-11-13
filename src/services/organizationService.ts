@@ -1,7 +1,7 @@
+import { IMissile } from "../modules/missileMoudle";
 import { IOrganizations } from "../modules/organizationMoudle";
 import Organizations from "../modules/organizationMoudle"
-import { IResources } from "../modules/missilesMoudle"
-import Resources from "../modules/missilesMoudle"
+import Missile from "../modules/missileMoudle"
 
 
 export const GetOrganization = async (nameOrg: string): Promise<IOrganizations | void>=>{
@@ -15,9 +15,9 @@ export const GetOrganization = async (nameOrg: string): Promise<IOrganizations |
     }
 }
 
-export const GetMissile = async (nameMis: string): Promise<IResources | void>=>{
+export const GetMissile = async (nameMis: string): Promise<IMissile | void>=>{
     try {
-        const newMissile: IResources | null= await Resources.findOne({name: nameMis}) 
+        const newMissile: IMissile | null= await Missile.findOne({name: nameMis}) 
         if (newMissile) {
             return newMissile
         }
