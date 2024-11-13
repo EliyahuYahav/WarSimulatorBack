@@ -7,6 +7,7 @@ import Missile from "../modules/missileMoudle"
 export const GetOrganization = async (nameOrg: string): Promise<IOrganizations | void>=>{
     try {
         const newOrganizations: IOrganizations | null= await Organizations.findOne({name: nameOrg}) 
+        console.log(newOrganizations?.resources)
         if (newOrganizations) {
             return newOrganizations
         }

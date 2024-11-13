@@ -4,7 +4,8 @@ import { GetMissile, GetOrganization } from "../services/organizationService";
 export const GetOrganizationById = async (req: Request, res: Response): Promise<void> => {
     try {
       const newOrganizations = await GetOrganization(req.params.name)
-      res.status(201).json({organization: newOrganizations})
+      console.log(newOrganizations)
+      res.status(201).json(newOrganizations)
     } catch (error) {
       res.status(409).json({ error: error });
     }

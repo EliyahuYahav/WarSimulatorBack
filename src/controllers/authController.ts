@@ -24,12 +24,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { name, password } = req.body;
+    if (!name || !password) {
       res.status(400).json({ error: "Username and password are required." });
       return;
     }
-    const user: IUser | null = await authenticateUser(username, password);
+    const user: IUser | null = await authenticateUser(name, password);
     if (user) {
       const token = jwt.sign({ id: user._id, organization:user.organization }, JWT_SECRET, {
         expiresIn: "1h",

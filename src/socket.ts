@@ -12,13 +12,11 @@ export function initializeSocketServer(httpServer: HTTPServer) {
   io.on('connection', (socket) => {
     console.log('A user connected', socket.id);
 
-    // Join a room
     socket.on('join', (room) => {
       socket.join(room);
       console.log(`Socket ${socket.id} joined room ${room}`);
     });
 
-    // Leave a room
     socket.on('leave', (room) => {
       socket.leave(room);
       console.log(`Socket ${socket.id} left room ${room}`);
