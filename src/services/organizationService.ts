@@ -6,8 +6,7 @@ import Missile from "../modules/missileMoudle"
 
 export const GetOrganization = async (nameOrg: string): Promise<IOrganizations | void>=>{
     try {
-        const newOrganizations: IOrganizations | null= await Organizations.findOne({name: nameOrg}) 
-        console.log(newOrganizations?.resources)
+        const newOrganizations: IOrganizations | null= await Organizations.findOne({name: nameOrg})
         if (newOrganizations) {
             return newOrganizations
         }
@@ -24,5 +23,14 @@ export const GetMissile = async (nameMis: string): Promise<IMissile | void>=>{
         }
     } catch (error) {
         throw error
+    }
+}
+
+export const GetAllMissile = async ():Promise<IMissile[]| void>=>{
+    try {
+        const Missiles: IMissile[]= await Missile.find() 
+        return Missiles
+    } catch (error) {
+        throw new Error("Missile not found")
     }
 }

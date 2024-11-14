@@ -6,8 +6,15 @@ export const registerUser = async (user: IUser): Promise<IUser | void> => {
   try {
     const passwordHash = await bcrypt.hash(user.password.toString(), 10);
     user.password = passwordHash
-    const newOrganizations: IOrganizations | null= await Organizations.findOne({name: `${user.organization} - ${user.area}`})
-    user.organization = newOrganizations?._id
+      if(user.area){
+        const newOrganizations: IOrganizations | null= await Organizations.findOne({name: `${user.organization} - ${user.area}`})
+        user.nameOrg = newOrganizations?.name
+        user.organization = newOrganizations?._id
+      }else{
+        const newOrganizations: IOrganizations | null= await Organizations.findOne({name: user.organization})
+        user.nameOrg = newOrganizations?.name
+        user.organization = newOrganizations?._id
+      }
     await User.create(user);
     return user;
   } catch (error) {

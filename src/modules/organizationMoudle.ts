@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export interface IResources {
   name: string;
-  amount: Number;
+  amount: number;
   _id?: Types.ObjectId;
 }
 

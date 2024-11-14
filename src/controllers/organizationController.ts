@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import { GetMissile, GetOrganization } from "../services/organizationService";
+import { GetMissile, GetOrganization, GetAllMissile } from "../services/organizationService";
 
 export const GetOrganizationById = async (req: Request, res: Response): Promise<void> => {
     try {
       const newOrganizations = await GetOrganization(req.params.name)
-      console.log(newOrganizations)
       res.status(201).json(newOrganizations)
     } catch (error) {
       res.status(409).json({ error: error });
@@ -14,8 +13,17 @@ export const GetOrganizationById = async (req: Request, res: Response): Promise<
   export const GetMissileById = async (req: Request, res: Response): Promise<void> => {
     try {
       const newMissile = await GetMissile(req.params.name)
-      res.status(201).json({missile: newMissile})
+      res.status(200).json({missile: newMissile})
     } catch (error) {
       res.status(409).json({ error: error });
     }
   };
+
+  export const GetAllMissiles = async (req:Request, res:Response):Promise<void> =>{
+    try {
+      const allMissile = await GetAllMissile()
+      res.status(200).json(allMissile)
+    } catch (error) {
+      res.status(404).json({error:error})
+    }
+  }

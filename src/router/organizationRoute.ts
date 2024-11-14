@@ -1,8 +1,10 @@
 import express, { Router } from "express";
-import { GetMissileById, GetOrganizationById } from "../controllers/organizationController";
+import { GetMissileById, GetOrganizationById, GetAllMissiles } from "../controllers/organizationController";
 
 
 const router: Router = express.Router();
+
+router.route("/allMissile").get(GetAllMissiles)
 
 router.route('/organization/:name').get(GetOrganizationById);
 
